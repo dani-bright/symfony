@@ -1,0 +1,39 @@
+{% extends 'parent.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        {% for artwork in artworks %}
+            <div class="col-sm-3">
+                <img src="{{ asset('img/artwork/' ~ artwork.image) }}" alt="" class="img-fluid">
+                <p>{{ artwork.name }}</p>
+                <a href="{{ url('artwork.details', {'slug': artwork.slug}) }}" class="btn btn-primary">Consulter</a>
+            </div>
+
+        {% endfor %}
+    </div>
+
+    {% set currentPage = app.request.get('_route_params')['page'] %}
+
+    <div class="row">
+        <nav aria-label="..." class="text-center">
+            <ul class="pagination">
+                <li class="page-item {{ currentPage == 1 ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ url('artwork.index', {'page': currentPage-1}) }}" tabindex="-1">Previous</a>
+                </li>
+                {% set pages = nbPages%}
+                {% for i in 0..pages %}
+                    <li class="page-item {{ currentPage == i ? 'active' : '' }}">
+                        <a class="page-link" href="{{ url('artwork.index', {'page': i}) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                <li class="page-item">
+                    <a class="page-link {{ currentPage == 4 ? 'disabled' : '' }}" href="{{ url('artwork.index', {'page': currentPage+1}) }}">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
+
+{% block title %}
+    {{ parent() }} | Mise ne page
+{% endblock %}

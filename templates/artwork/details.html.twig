@@ -1,0 +1,16 @@
+{% extends 'parent.html.twig' %}
+
+{% block content %}
+    <div class="col">
+        <div class="col-sm-3">
+            <img src="{{ asset('img/artwork/' ~ artwork.image) }}" alt="" class="img-fluid">
+            <p>{{ artwork.name }}</p>
+            <p>{{ artwork.description }}</p>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+    {{ parent() }} | Mise ne page
+{% endblock %}

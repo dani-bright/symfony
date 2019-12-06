@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Administration{% endblock %}</title>
+    {{ encore_entry_link_tags('app') }}
+</head>
+<body>
+{% include 'inc/nav.html.twig' %}
+
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+{{ encore_entry_script_tags('app') }}
+</body>
+</html>

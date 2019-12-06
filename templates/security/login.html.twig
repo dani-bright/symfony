@@ -1,0 +1,32 @@
+{% extends 'parent.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="col">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('security.logout') }}">Logout</a>
+            </div>
+        {% endif %}
+        {{ form_start(form, { attr : { novalidate: 'novalidate'}}) }}
+        {{ form_label(form.email, 'Email') }}
+        {{ form_widget(form.email,
+            {
+                attr : { placeholder: 'Saisissez votre email'},
+                value:last_username
+            }) }}
+        {{ form_label(form.password, 'mot de passe') }}
+        {{ form_widget(form.password) }}
+        <input type="submit" value="Valider" class="btn btn-primary">
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

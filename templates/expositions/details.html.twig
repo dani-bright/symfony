@@ -1,0 +1,17 @@
+{% extends 'parent.html.twig' %}
+
+{% block content %}
+    <div class="col">
+        <div class="col-sm-3">
+            <img src="{{ asset('img/expo/' ~ expo.image) }}" alt="" class="img-fluid">
+            <p>{{ expo.title }}</p>
+            <p>{{ expo.date|date('Y-m-d') }}</p>
+            <p>{{ expo.description }}</p>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+    {{ parent() }} | Mise ne page
+{% endblock %}

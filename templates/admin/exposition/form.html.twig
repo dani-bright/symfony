@@ -1,0 +1,18 @@
+{% extends 'parent.html.twig' %}
+
+{% block content %}
+    <div class="col">
+        <h2>ajout d'exposition</h2>
+        {{ form_start(form, { attr : { novalidate: 'novalidate'}}) }}
+        {{ form_label(form.title, 'nom') }}
+        {{ form_widget(form.title, { attr : { placeholder: 'Saisissez un titire'}}) }}
+        {{ form_label(form.description, 'Description') }}
+        {{ form_widget(form.description, { attr : { placeholder: 'Saisissez une description'}}) }}
+        {{ form_label(form.image, 'image') }}
+        {{ form_widget(form.image) }}
+        {{ form_label(form.date, 'Date') }}
+        {{ form_widget(form.date) }}
+        <input type="submit" value="Valider" class="btn btn-primary">
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

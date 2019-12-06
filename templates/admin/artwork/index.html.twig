@@ -1,0 +1,49 @@
+{% extends 'admin.base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <h1>Gestion des oeuvres</h1>
+            {% include 'inc/flashMessage.html.twig' %}
+
+            <div class="text-right">
+                <a href="{{ url('admin.artwork.form') }}" class="btn btn-primary">Ajouter</a>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Categorie</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+                {% for artwork in artworks %}
+                    <tr>
+                        <td>
+                            <img src="{{ asset('img/artwork/'~ artwork.image) }}" alt="" width="60">
+                        </td>
+                        <td>{{ artwork.name }}</td>
+                        <td>
+                            {% for category in artwork.category %}
+                                {{ category.name }}
+                            {% endfor %}
+
+                        </td>
+                        <td>{{ artwork.description | truncate(15, true) }}</td>
+                        <td>
+                            <a href="{{ url('admin.artwork.form.update', {'id': artwork.id}) }}"
+                               class="btn btn-warning">Modifier</a>
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <a href="{{ url('admin.artwork.remove', {'id': artwork.id}) }}" class="btn btn-danger">Supprimer</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+    {{ parent() }} | Mise ne page
+{% endblock %}

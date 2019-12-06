@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %}
+            {{ site_name }}
+        {% endblock %}
+    </title>
+    {{ encore_entry_link_tags('app') }}
+</head>
+<body>
+{#
+     instructions twig de mise en page
+        block: zone définie à remplir ou pas dans une page enfant
+        include: inclusion de fichiers twig
+#}
+{% include 'inc/nav.html.twig' %}
+
+<div class="container">
+    <div class="row">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="#"> tilto.com</a>
+        <a href="{{url('legal.index')}}"> Mentions Legal</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+{{ encore_entry_script_tags('app') }}
+</body>
+</html>

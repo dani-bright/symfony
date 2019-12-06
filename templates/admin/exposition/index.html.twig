@@ -1,0 +1,47 @@
+{% extends 'admin.base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <h1>Gestion des expositions</h1>
+            {% include 'inc/flashMessage.html.twig' %}
+
+            <div class="text-right">
+                <a href="{{ url('admin.expo.form') }}" class="btn btn-primary">Ajouter</a>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Image</th>
+                    <th>titre</th>
+                    <th>description</th>
+                    <th>date</th>
+                    <th></th>
+                </tr>
+                {% for expo in expos %}
+                    <tr>
+                        <td>
+                            <img src="{{ asset('img/expo/'~ expo.image) }}" alt="" width="60">
+                        </td>
+                        <td>{{ expo.title }}</td>
+
+                        <td>{{ expo.description | truncate(15, true) }}</td>
+                        <td>
+                            {{ expo.date|date('Y-m-d') }}
+                        </td>
+                        <td>
+                            <a href="{{ url('admin.expo.form.update', {'id': expo.id}) }}"
+                               class="btn btn-warning">Modifier</a>
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <a href="{{ url('admin.expo.remove', {'id': expo.id}) }}" class="btn btn-danger">Supprimer</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+    {{ parent() }} | Mise ne page
+{% endblock %}

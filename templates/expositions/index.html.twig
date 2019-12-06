@@ -1,0 +1,19 @@
+{% extends 'parent.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        {% for expo in expos %}
+            <div class="col-sm-3">
+                <img src="{{ asset('img/expo/' ~ expo.image) }}" alt="" class="img-fluid">
+                <p>{{ expo.title }}</p>
+                <a href="{{ url('expo.details', {'slug': expo.slug}) }}" class="btn btn-primary">Consulter</a>
+            </div>
+
+        {% endfor %}
+    </div>
+    
+{% endblock %}
+
+{% block title %}
+    {{ parent() }} | Mise ne page
+{% endblock %}
