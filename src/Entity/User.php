@@ -73,10 +73,12 @@ class User implements UserInterface
      */
     public function getRoles(): array
     {
-        $this->roles = array_map(function (Role $role) {
+        $array = $this->roles->toArray();
+        //creation d'un array contenant des chaines de caractère des nom de roles
+        $roles = array_map(function (Role $role) {
             return $role->getName();
-        }, $this->roles->toArray());
-        return array_unique($this->roles);
+        }, $array);
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
