@@ -32,7 +32,7 @@ abstract class AbstractSubscriber implements EventSubscriber
     /**
      * @param $entity
      */
-    protected function fileTransfer($entity,$dir): void
+    protected function fileTransfer($entity, $dir): void
     {
         if ($entity->getImage() instanceof UploadedFile) {
             $this->fileService->upload($entity->getImage(), $dir);
@@ -40,7 +40,7 @@ abstract class AbstractSubscriber implements EventSubscriber
 
             if ($this->preUpdate) {
                 //Supprimer l'ancienne image
-                if (file_exists("$dir{$entity->prevImage}")) {
+                if (file_exists("$dir/{$entity->prevImage}")) {
                     $this->fileService->remove($dir, $entity->prevImage);
                 }
             }

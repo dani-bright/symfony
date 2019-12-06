@@ -4,7 +4,6 @@ namespace App\EventSubscriber\Entity;
 
 use App\Entity\Exposition;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use Doctrine\ORM\Events;
 
 class ExpositionSubscriber extends AbstractSubscriber
 {
